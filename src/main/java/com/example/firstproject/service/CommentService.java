@@ -5,6 +5,7 @@ import com.example.firstproject.entity.Article;
 import com.example.firstproject.entity.Comment;
 import com.example.firstproject.repository.ArticleRepository;
 import com.example.firstproject.repository.CommentRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class CommentService {
 
     @Transactional
     public CommentDto create(Long articleId, CommentDto dto) {
+        //log.info("input value => {}",articleId);
+        //log.info("input value => {}",dto);
         Article article=articleRepository.findById(articleId)
                 .orElseThrow(() -> new IllegalArgumentException("create comment fail"));
         Comment comment=Comment.createComment(dto,article);
@@ -43,6 +46,9 @@ public class CommentService {
         Comment created=commentRepository.save(comment);
 
         return CommentDto.createCommentDto(created);
+        //CommentDto createdDto=CommentDto.createCommentDto(created);
+        //log.info("return value => {}",createdDto);
+        //return createdDto;
     }
 
     @Transactional//require transactional because this method deal with data
