@@ -1,4 +1,4 @@
-package com.example.firstproject.annotation;
+package com.example.firstproject.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
